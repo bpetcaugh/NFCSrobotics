@@ -40,6 +40,7 @@ int PinClose = -100;
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
+//Added comment. Garbage comment.
 //void potRealign (float potAlign)
 //{
 	/*	if((SensorValue[in6]) || (SensorValue[in7]) > potAlign)
