@@ -95,12 +95,12 @@ task usercontrol()
 		motor[LiftLeft] = (vexRT[Ch3]);
 		motor(LiftRight) = (vexRT[Ch3]);
 
-		if (Btn7R == 1)
+		if (vexRT[Btn7R] == 1)
 		{
 			motor[ClawLeft]=127;
 			motor[ClawRight]=127;
 		}
-		else if (Btn7L ==1)
+		else if (vexRT[Btn7L] ==1)
 		{
 			motor[ClawLeft]=-127;
 			motor[ClawRight]=-127;
