@@ -155,14 +155,15 @@ task autonomous()
 	//
 	else if (SensorValue[dgtl11]==0 && SensorValue[dgtl12] == 0)
 	{
-		// Loop while robot's Ultrasonic sensor is further than 20 inches away from an object                                                                        // || (or) it is '-1'.  (-1 is the value returned when nothing is in it's visable range)
-		/*startMotor(backLeft, -100);
-		startMotor(backRight, -80);
-		startMotor(frontLeft, -100);
-		startMotor(frontRight, -80);*/
 		while(SensorValue(sonarSensor) > 5  || SensorValue(sonarSensor) == -1)
 		{
-			if (SensorValue[in8] > degree-error && SensorValue[in8] < degree + error)
+		// Loop while robot's Ultrasonic sensor is further than 20 inches away from an object                                                                        // || (or) it is '-1'.  (-1 is the value returned when nothing is in it's visable range)
+		startMotor(backLeft, -90);
+		startMotor(backRight, -90);
+		startMotor(frontLeft, -90);
+		startMotor(frontRight, -90);
+
+			/*if (SensorValue[in8] > degree-error && SensorValue[in8] < degree + error)
 			{
 				motor[backLeft] = -100;
 				motor[backRight] = -100;
@@ -182,7 +183,7 @@ task autonomous()
 				motor[backRight] = -50;
 				motor[frontLeft] = 50;
 				motor[frontRight] = -50;
-			}
+			}*/
 		}
 		//	startMotor(backLeft, -127);
 		//	startMotor(backRight, -127);

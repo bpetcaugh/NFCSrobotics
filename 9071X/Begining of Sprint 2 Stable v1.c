@@ -131,96 +131,102 @@ task autonomous()
 	{
 		while(SensorValue(sonarSensor) > 7  || SensorValue(sonarSensor) == -1)		// Loop while robot's Ultrasonic sensor is further than 20 inches away from an object
 		{                                                                         // || (or) it is '-1'.  (-1 is the value returned when nothing is in it's visable range)
-			startMotor(backLeft, -127);
+			startMotor(backLeft, -127);						//Go toward cube
 			startMotor(backRight, -127);
 			startMotor(frontLeft, -127);
 			startMotor(frontRight, -127);
 		}
-		stopMotor(backLeft);
-		stopMotor(backRight);
-		stopMotor(frontLeft);
-		stopMotor(frontRight);
-		startMotor(backLeft, 15);
-		startMotor(backRight, 15);
-		startMotor(frontLeft, 15);
-		startMotor(frontRight, 15);
+		startMotor(rightUpt, 100);					//Grab cube
+		startMotor(leftUpt, 100);
 		wait(.5);
-		startMotor(leftUp, 127);
-		//startMotor(leftUpt, 127);
-		startMotor(rightUp, 127);
-		//startMotor(rightUpt, 127);
+		//stopmotor(rightUpt);
+		//stopmotor(leftUpt);
+		startMotor(leftUpt, 127);							//Arms go up w/ cube
+		startMotor(rightUpt, 127);
+		wait(1);
+		stopMotor(leftUp);
+		stopMotor(rightUp);
+		startMotor(frontLeft, -127);												//Goes To fence
+		startMotor(backLeft, -127);
+		startMotor(frontRight, 127);
+		startMotor(backRight, 127);
+		wait(1);
+		stopMotor(rightUpt);								//Releases cube
+		stopMotor(leftUpt);
+
 	}
 	//
 	//Run with jumper clips in Digital 11 and Digital 12. TRUE Meta on RIGHT Side
 	//
 	else if (SensorValue[dgtl11]==0 && SensorValue[dgtl12] == 0)
 	{
-		// Loop while robot's Ultrasonic sensor is further than 20 inches away from an object                                                                        // || (or) it is '-1'.  (-1 is the value returned when nothing is in it's visable range)
-		/*startMotor(backLeft, -100);
-		startMotor(backRight, -80);
-		startMotor(frontLeft, -100);
-		startMotor(frontRight, -80);*/
 		while(SensorValue(sonarSensor) > 5  || SensorValue(sonarSensor) == -1)
 		{
-			if (SensorValue[in8] > degree-error && SensorValue[in8] < degree + error)
-			{
-				motor[backLeft] = -100;
-				motor[backRight] = -100;
-				motor[frontLeft] = -100;
-				motor[frontRight] = -100;
-			}
-			else if (SensorValue[in8] <degree-error)
-			{
-				motor[backLeft] = -50;
-				motor[backRight] = 50;
-				motor[frontRight] = 50;
-				motor[frontLeft] = -50;
-			}
-			else
-			{
-				motor[backLeft] = 50;
-				motor[backRight] = -50;
-				motor[frontLeft] = 50;
-				motor[frontRight] = -50;
-			}
+			// Loop while robot's Ultrasonic sensor is further than 20 inches away from an object                                                                        // || (or) it is '-1'.  (-1 is the value returned when nothing is in it's visable range)
+			startMotor(backLeft, -90);
+			startMotor(backRight, -90);
+			startMotor(frontLeft, -90);
+			startMotor(frontRight, -90);
 		}
-		//	startMotor(backLeft, -127);
-		//	startMotor(backRight, -127);
-		//	startMotor(frontLeft, -127);
-		//startMotor(frontRight, -127);
-		//	wait(2.3);
-		startMotor(backLeft, 15);
-		startMotor(backRight, 15);
-		startMotor(frontLeft, 15);
-		startMotor(frontRight, 15);
-		wait(.25);
-		stopMotor(backLeft);
-		stopMotor(backRight);
-		stopMotor(frontRight);
-		stopMotor(frontLeft);
-		motor[Meta] = -127;
-		wait(1);
-		motor[Meta] = -127;
-		startMotor(frontLeft, 127);
-		startMotor(frontRight, -127);
-		startMotor(backLeft, -127);
-		startMotor(backRight, 127);
-		startMotor(Meta, -127);
-		wait(2);
-		stopMotor(Meta);
-		stopMotor(frontLeft);
-		stopMotor(frontRight);
-		stopMotor(backLeft);
-		stopMotor(backRight);
+		/*	if (SensorValue[in8] > degree-error && SensorValue[in8] < degree + error)
+		{
+		motor[backLeft] = -100;
+		motor[backRight] = -100;
+		motor[frontLeft] = -100;
+		motor[frontRight] = -100;
+		}
+		else if (SensorValue[in8] <degree-error)
+		{
+		motor[backLeft] = -50;
+		motor[backRight] = 50;
+		motor[frontRight] = 50;
+		motor[frontLeft] = -50;
+		}
+		else
+		{
+		motor[backLeft] = 50;
+		motor[backRight] = -50;
+		motor[frontLeft] = 50;
+		motor[frontRight] = -50;
+		}*/
 	}
-	//
-	//Run code when no jumper clips are present. DEFAULT.
-	//
-	else
-	{
-		wait(3);
-	}
+	//	startMotor(backLeft, -127);
+	//	startMotor(backRight, -127);
+	//	startMotor(frontLeft, -127);
+	//startMotor(frontRight, -127);
+	//	wait(2.3);
+	startMotor(backLeft, 15);
+	startMotor(backRight, 15);
+	startMotor(frontLeft, 15);
+	startMotor(frontRight, 15);
+	wait(.25);
+	stopMotor(backLeft);
+	stopMotor(backRight);
+	stopMotor(frontRight);
+	stopMotor(frontLeft);
+	motor[Meta] = -127;
+	wait(1);
+	motor[Meta] = -127;
+	startMotor(frontLeft, 127);
+	startMotor(frontRight, -127);
+	startMotor(backLeft, -127);
+	startMotor(backRight, 127);
+	startMotor(Meta, -127);
+	wait(2);
+	stopMotor(Meta);
+	stopMotor(frontLeft);
+	stopMotor(frontRight);
+	stopMotor(backLeft);
+	stopMotor(backRight);
 }
+//
+//Run code when no jumper clips are present. DEFAULT.
+//
+/*else
+{
+wait(3);
+
+}*/
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
