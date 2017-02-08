@@ -36,18 +36,18 @@
 
 void pre_auton()
 {
-  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
-  // running between Autonomous and Driver controlled modes. You will need to
-  // manage all user created tasks if set to false.
-  bStopTasksBetweenModes = true;
+	// Set bStopTasksBetweenModes to false if you want to keep user created tasks
+	// running between Autonomous and Driver controlled modes. You will need to
+	// manage all user created tasks if set to false.
+	bStopTasksBetweenModes = true;
 
 	// Set bDisplayCompetitionStatusOnLcd to false if you don't want the LCD
 	// used by the competition include file, for example, you might want
 	// to display your team name on the LCD in this function.
 	// bDisplayCompetitionStatusOnLcd = false;
 
-  // All activities that occur before the competition starts
-  // Example: clearing encoders, setting servo positions, ...
+	// All activities that occur before the competition starts
+	// Example: clearing encoders, setting servo positions, ...
 }
 
 /*---------------------------------------------------------------------------*/
@@ -62,11 +62,11 @@ void pre_auton()
 
 task autonomous()
 {
-startMotor(BackMotorLeft);
-startMotor(BackMotorRight);
-startMotor(FrontMotorLeft);
-startMotor(FrontMotorRight);
-wait(15);
+	startMotor(BackMotorLeft);
+	startMotor(BackMotorRight);
+	startMotor(FrontMotorLeft);
+	startMotor(FrontMotorRight);
+	wait(15);
 
 }
 
@@ -82,35 +82,35 @@ wait(15);
 
 task usercontrol()
 {
-  // User control code here, inside the loop
+	// User control code here, inside the loop
 
-  while (true)
-  {
+	while (true)
+	{
 
 
-    motor[BackMotorLeft]  = (vexRT[Ch2] + vexRT[Ch1])/2;  // (y + x)/2
-    motor[BackMotorRight] = (vexRT[Ch2] - vexRT[Ch1])/2;  // (y - x)/2
+		motor[BackMotorLeft]  = (vexRT[Ch2] + vexRT[Ch1])/2;  // (y + x)/2
+		motor[BackMotorRight] = (vexRT[Ch2] - vexRT[Ch1])/2;  // (y - x)/2
 		motor[FrontMotorRight]  = (vexRT[Ch2] + vexRT[Ch1])/2;  // (y + x)/2
-    motor[FrontMotorLeft] = (vexRT[Ch2] - vexRT[Ch1])/2;  // (y - x)/2
-    motor[LiftLeft] = (vexRT[Ch3]);
+		motor[FrontMotorLeft] = (vexRT[Ch2] - vexRT[Ch1])/2;  // (y - x)/2
+		motor[LiftLeft] = (vexRT[Ch3]);
 		motor(LiftRight) = (vexRT[Ch3]);
 
-		if (Btn8L == 1)
-	{
-		motor[ClawLeft]=127;
-		motor[ClawRight]=127;
-	}
-		else if (Btn8L ==1)
+		if (Btn7R == 1)
 		{
-		motor[ClawLeft]=-127;
-		motor[ClawRight]=-127;
-	}
+			motor[ClawLeft]=127;
+			motor[ClawRight]=127;
+		}
+		else if (Btn7L ==1)
+		{
+			motor[ClawLeft]=-127;
+			motor[ClawRight]=-127;
+		}
 		else
-	{
-		motor[ClawLeft]=0;
-		motor[ClawRight]=0;
+		{
+			motor[ClawLeft]=0;
+			motor[ClawRight]=0;
+		}
+
+
 	}
-
-
-}
 }
