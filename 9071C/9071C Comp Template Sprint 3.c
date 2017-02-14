@@ -101,7 +101,44 @@ stopMotor(LeftBase);
 stopMotor(RightBase);
 stopMotor(RightBottomBase);
 stopMotor(LeftBottomBase);
+wait(.25);
+motor[LeftBase]=127;   			//Turns the robot to face the wall
+motor[LeftBottomBase]=127;
+motor[RightBase]=-127;
+motor[RightBottomBase]=-127;
+wait(.5);
+stopMotor(LeftBase);
+stopMotor(RightBase);
+stopMotor(RightBottomBase);
+stopMotor(LeftBottomBase);
+wait(.25);
+motor[LeftBase]=127;
+motor[LeftBottomBase]=127;   //Moves the robot to the middle fence
+motor[RightBase]=127;
+motor[RightBottomBase]=127;
+motor[LeftBase]=-127;   			//Turns the robot to face the middle fence
+motor[LeftBottomBase]=-127;
+motor[RightBase]=127;
+motor[RightBottomBase]=127;
+wait(.5);
+stopMotor(LeftBase);
+stopMotor(RightBase);
+stopMotor(RightBottomBase);
+stopMotor(LeftBottomBase);
+motor[LeftPillar]=127;
+motor[RightPillar]=127;
+motor[TopLeftPillarMotor]=127;
+motor[TopRightPillarMotor]=127;
+wait(.75);
+stopMotor(LeftPillar);
+stopMotor(RightPillar);
+stopMotor(TopRightPillarMotor);
+stopMotor(TopLeftPillarMotor);
 
+
+
+
+/*
 motor[LeftBase]=127;				//Pushes the star
 motor[LeftBottomBase]=127;
 motor[RightBase]=127;
@@ -111,7 +148,7 @@ stopMotor(LeftBase);
 stopMotor(LeftBottomBase);
 stopMotor(RightBase);
 stopMotor(RightBottomBase);
-
+*/
 
 
 }
@@ -150,7 +187,8 @@ task usercontrol()
   // User control code here, inside the loop
 
 
-
+while (true)
+  {
 
   motor[RightBase] = vexRT[Ch2];
   motor[LeftBase]  = vexRT[Ch3];
@@ -159,17 +197,17 @@ task usercontrol()
 
   if(vexRT[Btn6U]== 1) //Makes the  top motors of the Lift go up
 {
-	motor[RightPillar] = 127;
-	motor[TopRightPillarMotor] = 127;
-	motor[LeftPillar] = 127;
-	motor[TopLeftPillarMotor]=127;
+	motor[RightPillar] = 100;
+	motor[TopRightPillarMotor] = 100;
+	motor[LeftPillar] = 100;
+	motor[TopLeftPillarMotor]=100;
 }
   else if(vexRT[Btn5U]==1) //Makes the bottom motords of the lift go down
   {
-  motor[RightPillar] = -127;
-	motor[TopRightPillarMotor] = -127;
-	motor[LeftPillar]=-127;
-	motor[TopLeftPillarMotor]=-127;
+  motor[RightPillar] = -100;
+	motor[TopRightPillarMotor] = -100;
+	motor[LeftPillar]=-100;
+	motor[TopLeftPillarMotor]=-100;
 }
 	else
 	{
@@ -182,4 +220,5 @@ task usercontrol()
 
 
 
+}
 }
